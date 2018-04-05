@@ -30,8 +30,8 @@
   (defsc Ex3-Item [this {:keys [id n]}]
     {:query [:id :n]
      :ident [:child/by-id :id]}
-    (dom/li nil
-      (dom/span nil \"n: \" n)
+    (dom/li
+      (dom/span \"n: \" n)
       ; TODO: Fix the rendering using transaction follow-on property reads
       (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id}) :items])} \"Increment\")
       (dom/button {:onClick #(prim/transact! this `[(ex3-dec {:id ~id}) :items])} \"Decrement\")))
@@ -64,8 +64,8 @@
   (defsc Ex4-Item [this {:keys [id n]} {:keys [onIncrement onDecrement]}]
     {:query [:id :n]
      :ident [:child/by-id :id]}
-    (dom/li nil
-      (dom/span nil \"n: \" n)
+    (dom/li
+      (dom/span \"n: \" n)
       (dom/button {:onClick #(onIncrement id)} \"Increment\")
       (dom/button {:onClick #(onDecrement id)} \"Decrement\")))
 
@@ -75,8 +75,8 @@
     (let [onIncrement (fn [id] (prim/transact! this `[(ex2-inc {:id ~id})]))
           onDecrement (fn [id] (prim/transact! this `[(ex3-dec {:id ~id})]))]
       (dom/div {:style {:float \"left\" :width \"300px\"}}
-        (dom/h4 nil (str title (when (= 0 min) (str \" (n <= \" max \")\"))))
-        (dom/ul nil (->> items
+        (dom/h4 (str title (when (= 0 min) (str \" (n <= \" max \")\"))))
+        (dom/ul (->> items
                       (filter (fn [{:keys [n]}] (<= min n max)))
                       (map (fn [i] (ui-ex4-item (prim/computed i computed-callbacks)))))))))
 

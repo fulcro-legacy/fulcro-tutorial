@@ -12,7 +12,7 @@
   {:initial-state (fn [params] {:id 1 :x 1})
    :query         [:id :x]
    :ident         [:child/by-id :id]}
-  (dom/p nil (str "Child x: " x)))
+  (dom/p (str "Child x: " x)))
 
 (def ui-child (prim/factory Child))
 
@@ -248,14 +248,14 @@
 (defsc AQueryRoot [this {:keys [root-prop]}]
   {:initial-state (fn [p] {})                               ; empty, but present initial state
    :query         (fn [] [[:root-prop '_]])}                ; A asks for something from root, but has no local props (empty map)
-  (dom/p nil "A got " (if root-prop root-prop "Nothing!")))
+  (dom/p "A got " (if root-prop root-prop "Nothing!")))
 
 (def ui-a (prim/factory AQueryRoot))
 
 (defsc BQueryRoot [this {:keys [root-prop]}]
   ; no initial state
   {:query (fn [] [[:root-prop '_]])}                        ; B asks for something from root, no local props (nil for state)
-  (dom/p nil "B got " (if root-prop root-prop "Nothing!")))
+  (dom/p "B got " (if root-prop root-prop "Nothing!")))
 
 (def ui-b (prim/factory BQueryRoot))
 
@@ -264,7 +264,7 @@
                            :a         (prim/get-initial-state AQueryRoot {})}) ; b has no state
    :query         [{:a (prim/get-query AQueryRoot)}
                    {:b (prim/get-query BQueryRoot)}]}
-  (dom/div nil
+  (dom/div
     (ui-a a)
     (ui-b b)))
 

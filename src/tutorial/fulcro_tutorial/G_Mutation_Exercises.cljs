@@ -20,8 +20,8 @@
 (defsc Ex1-Root [this {:keys [ui/react-key n]}]
   {:query [:ui/react-key :n]}
   (dom/div {:key react-key}
-    (dom/hr nil)
-    (dom/p nil "n: " n)
+    (dom/hr)
+    (dom/p "n: " n)
     (dom/button {:onClick #(prim/transact! this `[(ex1-inc {})])} "Increment")))
 
 (defcard-fulcro mutation-exercise-1
@@ -46,8 +46,8 @@
 (defsc Ex2-Child [this {:keys [id n]}]
   {:query [:id :n]
    :ident [:child/by-id :id]}
-  (dom/li nil
-    (dom/span nil "n: " n)
+  (dom/li
+    (dom/span "n: " n)
     (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")))
 
 (def ui-ex2-child (prim/factory Ex2-Child {:keyfn :id}))
@@ -55,7 +55,7 @@
 (defsc Ex2-Root [this {:keys [ui/react-key items]}]
   {:query [:ui/react-key {:items (prim/get-query Ex2-Child)}]}
   (dom/div {:key react-key}
-    (dom/ul nil (map ui-ex2-child items))))
+    (dom/ul (map ui-ex2-child items))))
 
 (defcard-fulcro mutation-exercise-2
   "## Exercise 2 - Mutation parameters
@@ -78,8 +78,8 @@
 (defsc Ex3-Item [this {:keys [id n]}]
   {:query [:id :n]
    :ident [:child/by-id :id]}
-  (dom/li nil
-    (dom/span nil "n: " n)
+  (dom/li
+    (dom/span "n: " n)
     ; TODO: Fix the rendering using transaction follow-on property reads
     (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")
     (dom/button {:onClick #(prim/transact! this `[(ex3-dec {:id ~id})])} "Decrement")))
@@ -90,8 +90,8 @@
   {:query [:id :title :max :min {[:items '_] (prim/get-query Ex3-Item)}]
    :ident [:list/by-id :id]}
   (dom/div {:style {:float "left" :width "300px"}}
-    (dom/h4 nil (str title (when (= 0 min) (str " (n <= " max ")"))))
-    (dom/ul nil (->> items
+    (dom/h4 (str title (when (= 0 min) (str " (n <= " max ")"))))
+    (dom/ul (->> items
                   (filter (fn [{:keys [n]}] (<= min n max)))
                   (map ui-ex3-item)))))
 
@@ -143,8 +143,8 @@
 (defsc Ex4-Item [this {:keys [id n]} computed-callbacks] ; TODO: destructure the callbacks out of computed
   {:query [:id :n]
    :ident [:child/by-id :id]}
-  (dom/li nil
-    (dom/span nil "n: " n)
+  (dom/li
+    (dom/span "n: " n)
     ; TODO: MOVE THESE TO THE PARENT, and trigger callbacks (received from computed) from here instead
     (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")
     (dom/button {:onClick #(prim/transact! this `[(ex3-dec {:id ~id})])} "Decrement")))
@@ -155,8 +155,8 @@
   {:query [:id :title :max :min {[:items '_] (prim/get-query Ex4-Item)}]
    :ident [:list/by-id :id]}
   (dom/div {:style {:float "left" :width "300px"}}
-    (dom/h4 nil (str title (when (= 0 min) (str " (n <= " max ")"))))
-    (dom/ul nil (->> items
+    (dom/h4 (str title (when (= 0 min) (str " (n <= " max ")"))))
+    (dom/ul (->> items
                   (filter (fn [{:keys [n]}] (<= min n max)))
                   ; TODO: Pass through the callbacks. Remember to use computed!
                   (map ui-ex4-item)))))

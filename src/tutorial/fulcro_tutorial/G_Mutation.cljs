@@ -207,7 +207,7 @@
   ```
   "
   (fn [state _]
-    (dom/div nil
+    (dom/div
       (dom/button {:onClick #(fc/integrate-ident! state [:new-ident (rand-int 100000)]
                                    :append [:table/by-id 1 :list-of-things]
                                    )} "Append a random ident")))
@@ -223,7 +223,7 @@
   ```
   "
   (fn [state _]
-    (dom/div nil
+    (dom/div
       (dom/button {:onClick #(fc/integrate-ident! state [:new-ident (rand-int 100000)]
                                    :prepend [:table/by-id 1 :list-of-things]
                                    )} "Prepend a random ident")))
@@ -239,7 +239,7 @@
   ```
   "
   (fn [state _]
-    (dom/div nil
+    (dom/div
       (dom/button {:onClick #(fc/integrate-ident! state [:new-ident (rand-int 100000)]
                                    :replace [:table/by-id 1 :list-of-things 0]
                                    )} "Replace first with a random ident")))
@@ -258,7 +258,7 @@
   ```
   "
   (fn [state _]
-    (dom/div nil
+    (dom/div
       (dom/button {:onClick #(fc/integrate-ident! state [:new-ident (rand-int 100000)]
                                    :append [:table/by-id 3 :list-of-things]
                                    :prepend [:table/by-id 2 :list-of-things]

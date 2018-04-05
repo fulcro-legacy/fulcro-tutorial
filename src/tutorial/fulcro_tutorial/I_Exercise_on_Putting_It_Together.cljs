@@ -70,8 +70,8 @@
   (dom/div {:key react-key :style {:border "1px solid black"}}
     (dom/button {:onClick #(df/load this :something nil)} "Load")
     (if (pos? something)
-      (dom/p nil (str "OK! SERVER RESPONDED WITH " something))
-      (dom/p nil "No response from server. Are you on port 9000? Is the server running? Have you pressed Load?"))))
+      (dom/p (str "OK! SERVER RESPONDED WITH " something))
+      (dom/p "No response from server. Are you on port 9000? Is the server running? Have you pressed Load?"))))
 
 (defcard-fulcro check-setup CheckSetupRoot)
 
@@ -122,7 +122,7 @@
     )
 
 (defsc TodoList [this props]
-  (dom/div nil "TODO"))
+  (dom/div "TODO"))
 
 (defcard-fulcro todo-list-application
   "This card can be used to show your application.

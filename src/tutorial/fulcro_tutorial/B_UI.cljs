@@ -7,16 +7,16 @@
             [devcards.core :as dc :refer-macros [defcard defcard-doc]]))
 
 (defsc Widget [this props]
-  (dom/div nil "Hello world"))
+  (dom/div "Hello world"))
 
 (defsc WidgetWithHook [this props]
   {:componentWillUpdate (fn [nextprops nextstate] (println "Component will update"))}
-  (dom/div nil "Hello world"))
+  (dom/div "Hello world"))
 
 (def ui-widget (prim/factory Widget))
 
 (defsc WidgetWithProperties [this {:keys [name]}]
-  (dom/div nil (str "Hello " name)))
+  (dom/div (str "Hello " name)))
 
 (def ui-prop-widget (prim/factory WidgetWithProperties))
 
@@ -100,18 +100,18 @@
 (defcard props-card (ui-prop-widget {:name "Sam"}))
 
 (defsc Person [this {:keys [name]}]
-  (dom/li nil name))
+  (dom/li name))
 
 (def ui-person (prim/factory Person {:keyfn :name}))
 
 (defsc PeopleList [this people]
-  (dom/ul nil (map ui-person people)))
+  (dom/ul (map ui-person people)))
 
 (def ui-people-list (prim/factory PeopleList))
 
 (defsc Root [this {:keys [people number]}]
-  (dom/div nil
-    (dom/span nil (str "My lucky number is " number " and I have the following friends:"))
+  (dom/div
+    (dom/span (str "My lucky number is " number " and I have the following friends:"))
     (ui-people-list people)))
 
 (def ui-root (prim/factory Root))
@@ -164,10 +164,10 @@
 (defsc Root-computed [this
                       {:keys [people number b]}
                       {:keys [incHandler boolHandler]}]
-  (dom/div nil
+  (dom/div
     (dom/button {:onClick #(boolHandler)} "Toggle Luck")
     (dom/button {:onClick #(incHandler)} "Increment Number")
-    (dom/span nil (str "My " (if b "" "un") "lucky number is " number
+    (dom/span (str "My " (if b "" "un") "lucky number is " number
                     " and I have the following friends:"))
     (ui-people-list people)))
 
@@ -245,10 +245,10 @@
 
 (defsc SimpleCounter [this props]
   {:initLocalState (fn [] {:counter 0})}
-  (dom/div nil
+  (dom/div
     (dom/button {:onClick #(prim/update-state! this update :counter inc)}
       "Increment me!")
-    (dom/span nil
+    (dom/span
       (prim/get-state this :counter))))
 
 (def simple-counter (prim/factory SimpleCounter))
@@ -311,7 +311,7 @@
 (defcard simple-counter-component
   "This card shows a component that changes state known only to the component itself"
   (fn [state-atom _]
-    (dom/div nil
+    (dom/div
       (simple-counter @state-atom))))
 
 (defcard-doc

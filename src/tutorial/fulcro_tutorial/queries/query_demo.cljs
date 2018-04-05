@@ -6,18 +6,18 @@
 
 (defsc Person [this {:keys [person/name]}]
   {:query [:person/name]}
-  (dom/li nil name))
+  (dom/li name))
 
 (def person (prim/factory Person {:keyfn :db/id}))
 
 (defsc PeopleWidget [this people]
-  (dom/ul nil (map person people)))
+  (dom/ul (map person people)))
 
 (def people-list (prim/factory PeopleWidget))
 
 (defsc Root [this {:keys [people]}]
   {:query [{:people (prim/get-query Person)}]}
-  (dom/div nil (people-list people)))
+  (dom/div (people-list people)))
 
 (def root (prim/factory Root))
 

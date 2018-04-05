@@ -54,19 +54,19 @@
     (let [{:keys [id db query-result]} (prim/props this)
           local (prim/get-state this)
           state (prim/get-computed this :atom)]
-      (dom/div nil
-        (dom/h4 nil "Database")
+      (dom/div
+        (dom/h4 "Database")
         (html-edn db)
-        (dom/hr nil)
+        (dom/hr)
         (dom/div #js {:key (str "editor-" id)}
-          (dom/h4 nil "Query Editor")
+          (dom/h4 "Query Editor")
           (dom/textarea #js {:id id})
           (dom/button #js {:onClick #(let [query (.getValue (:cm local))]
                                       (swap! state assoc :query-result (run-query db query)
                                         :query query))} "Run Query"))
-        (dom/hr nil)
+        (dom/hr)
         (dom/div #js {:key (str "result-" id)}
-          (dom/h4 nil "Query Result")
+          (dom/h4 "Query Result")
           (html-edn query-result))))))
 
 (def ui-query-editor (prim/factory QueryEditor))

@@ -23,28 +23,28 @@
   (dom/li {:key react-key}
     (dom/input {:type "checkbox"})
     name
-    (dom/button nil "X")
-    (when mate (dom/ul nil (person mate)))))
+    (dom/button "X")
+    (when mate (dom/ul (person mate)))))
 
 (defn people-list [people]
-  (dom/div nil
-    (dom/button nil "Save")
-    (dom/button nil "Refresh List")
-    (dom/ul nil (map-indexed (fn [index item]
+  (dom/div
+    (dom/button "Save")
+    (dom/button "Refresh List")
+    (dom/ul (map-indexed (fn [index item]
                                (person (merge item {:ui/react-key index})))
                              people))))
 
 (defn root [state-atom]
   (let [{:keys [last-error people new-person] :as ui-data} @state-atom]
-    (dom/div nil
-      (dom/div nil (when (not= "" last-error) (str "Error " last-error)))
-      (dom/div nil
-        (dom/div nil
+    (dom/div
+      (dom/div (when (not= "" last-error) (str "Error " last-error)))
+      (dom/div
+        (dom/div
           (if (= nil people)
-            (dom/span nil "Loading...")
+            (dom/span "Loading...")
             (people-list people))
           (dom/input {:type "text" :value new-person})
-          (dom/button nil "Add Person"))))))
+          (dom/button "Add Person"))))))
 
 (defcard overall-goal
   "## Overall goal
@@ -80,14 +80,14 @@
   (let [name    "What's my :person/name?"                   ; TODO (ex 1): Get the Fulcro properties from this for `name` and `mate`
         mate    nil
         checked false]                                      ; TODO (ex 3): Component local state
-    (dom/li nil
+    (dom/li
       (dom/input {:type    "checkbox"
                       :onClick (fn [e] (println "TODO ex 3"))
                       :checked false                        ; TODO (ex 3): Modify local state
                       })
-      (dom/span nil name)                                   ; TODO (ex 3): Make name bold when checked
-      (dom/button nil "X")                                  ; TODO (ex 4): Call onDelete handler, if present
-      (when mate (dom/ul nil (ui-person mate))))))
+      (dom/span name)                                   ; TODO (ex 3): Make name bold when checked
+      (dom/button "X")                                  ; TODO (ex 4): Call onDelete handler, if present
+      (when mate (dom/ul (ui-person mate))))))
 
 (def ui-person (prim/factory Person))
 
@@ -110,14 +110,14 @@
 (defsc PeopleWidget [this props]
   ;; TODO (ex 4): Create a deletePerson function
   (let [people []]                                          ; TODO (ex 2): `people` should come from the props
-    (dom/div nil
+    (dom/div
       (if (= nil people)
-        (dom/span nil "Loading...")
-        (dom/div nil
+        (dom/span "Loading...")
+        (dom/div
           (dom/button {} "Save")
           (dom/button {} "Refresh List")
           ;; TODO (ex 4): Pass deletePerson as the onDelete handler to person element
-          (dom/ul nil (map #(ui-person %) people)))))))
+          (dom/ul (map #(ui-person %) people)))))))
 
 (def ui-people (prim/factory PeopleWidget))
 
@@ -125,9 +125,9 @@
   (let [widget     nil
         new-person nil
         last-error nil]                                     ; TODO (ex 2): Extract the proper props for each var.
-    (dom/div nil
-      (dom/div nil (when (not= "" last-error) (str "Error " last-error)))
-      (dom/div nil
+    (dom/div
+      (dom/div (when (not= "" last-error) (str "Error " last-error)))
+      (dom/div
         (ui-people widget)
         (dom/input {:type "text"})
         (dom/button {} "Add Person")))))

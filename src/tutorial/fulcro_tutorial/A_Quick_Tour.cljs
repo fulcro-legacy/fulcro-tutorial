@@ -50,9 +50,9 @@
    :ident         (fn [] [:panels/by-kw :counter])}         ; Using a lambda, so we can "calculate" our database location (and make it constant)
   (let [click-callback (fn [id] (prim/transact! this
                                   `[(increment-counter {:id ~id}) :counter/by-id]))]
-    (dom/div nil
+    (dom/div
       ; embedded style: kind of silly in a real app, but doable
-      (dom/style nil ".counter { width: 400px; padding-bottom: 20px; }
+      (dom/style ".counter { width: 400px; padding-bottom: 20px; }
                         button { margin-left: 10px; }")
       ; computed lets us pass calculated data to our component's 3rd argument. It has to be
       ; combined into a single argument or the factory would not be React-compatible (not would it be able to handle
@@ -65,7 +65,7 @@
   {:initial-state (fn [params] {})                          ; components have to have some state in the database, or queries cannot run against them
    :query         (fn [] [[:counter/by-id '_]])}            ; query against the "root" node. Get's the entire table of counters.
   (let [total (reduce (fn [total c] (+ total (:counter/n c))) 0 (vals counter-table))]
-    (dom/div nil
+    (dom/div
       (str "Grand total: " total))))
 
 (def ui-counter-sum (prim/factory CounterSum))
@@ -75,7 +75,7 @@
    :query         [:ui/loading-data                         ; this is auto-populated with a network activity indicator
                    {:panel (prim/get-query CounterPanel)}   ; compose in our child
                    {:counter-sum (prim/get-query CounterSum)}]} ; described soon...
-  (dom/div nil
+  (dom/div
     (when loading-data
       (dom/span {:style {:float "right"}} "Loading..."))
     (ui-counter-panel panel)
@@ -491,7 +491,7 @@
   ")
 
 (defcard mock-server-state
-  (dom/div nil "The state shown below is the active state of the mock server for the FinalResult card.")
+  (dom/div "The state shown below is the active state of the mock server for the FinalResult card.")
   server-state
   {:watch-atom   true
    :inspect-data true})
