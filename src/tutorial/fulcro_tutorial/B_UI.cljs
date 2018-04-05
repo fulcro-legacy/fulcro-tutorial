@@ -319,8 +319,6 @@
 
   ## Important notes and further reading
 
-  - Remember to use `#js` to transform attribute maps for passing to low-level DOM elements.
-  - Use *cljs* maps as input to your own Elements: `(my-ui-thing {:a 1})` and Javascript objects for low-level DOM `(dom/div { :data-x 1 } ...)`.
   - Add parent-generated things (like callbacks) using `prim/computed` and use the optional third argument to receive them.
 
   You may do additional [UI exercises](#!/fulcro_tutorial.B_UI_Exercises), or continue on to the

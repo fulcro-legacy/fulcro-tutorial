@@ -19,10 +19,10 @@
                         :as   params}] {:counter/id id :counter/n start}) ; What should go in the database on application start-up?
    :query         [:counter/id :counter/n]                  ; What does this component need from the database (relative to its entity)
    :ident         [:counter/by-id :counter/id]}             ; Where is it stored in the database (table and ID)?
-  (dom/div {:className "counter"}
-    (dom/span {:className "counter-label"}
+  (dom/div :.counter
+    (dom/span :.counter-label
       (str "Current count for counter " id ":  "))
-    (dom/span {:className "counter-value"} n)
+    (dom/span :.counter-value n)
     (dom/button {:onClick #(onClick id)} "Increment")))
 
 (def ui-counter (prim/factory Counter {:keyfn :counter/id}))
@@ -53,7 +53,7 @@
     (dom/div
       ; embedded style: kind of silly in a real app, but doable
       (dom/style ".counter { width: 400px; padding-bottom: 20px; }
-                        button { margin-left: 10px; }")
+                  button { margin-left: 10px; }")
       ; computed lets us pass calculated data to our component's 3rd argument. It has to be
       ; combined into a single argument or the factory would not be React-compatible (not would it be able to handle
       ; children).
@@ -320,7 +320,19 @@
 
   ### Making a Counter component
 
-  Here's the Fulcro implementation of that UI component:
+  React factories for low-level DOM in Fulcro look like this:
+
+  ```
+  (dom/div props children)
+  ```
+
+  where props and children are optional. Additionally, there is a short-hand if all you need is an ID and CSS classes:
+
+  ```
+  (dom/div :.a.b#id children) ; <div id='id' class='a b'>children</div>
+  ```
+
+  Here's the Fulcro implementation of a UI component:
 
   "
   (dc/mkdn-pprint-source Counter)
