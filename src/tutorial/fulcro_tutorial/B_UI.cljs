@@ -61,8 +61,6 @@
   (dc/mkdn-pprint-source WidgetWithHook)
   "
 
-  The complete list of method signatures can be found in the [cheat sheet](https://github.com/fulcrologic/fulcro/blob/develop/docs/CheatSheet.adoc).
-
   ## Element factory
 
   In order to render components on the screen you need an element factory.
