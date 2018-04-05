@@ -33,8 +33,8 @@
     (dom/li nil
       (dom/span nil \"n: \" n)
       ; TODO: Fix the rendering using transaction follow-on property reads
-      (dom/button #js {:onClick #(prim/transact! this `[(ex2-inc {:id ~id}) :items])} \"Increment\")
-      (dom/button #js {:onClick #(prim/transact! this `[(ex3-dec {:id ~id}) :items])} \"Decrement\")))
+      (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id}) :items])} \"Increment\")
+      (dom/button {:onClick #(prim/transact! this `[(ex3-dec {:id ~id}) :items])} \"Decrement\")))
   ```
 
   OR, add it to the mutations:
@@ -66,15 +66,15 @@
      :ident [:child/by-id :id]}
     (dom/li nil
       (dom/span nil \"n: \" n)
-      (dom/button #js {:onClick #(onIncrement id)} \"Increment\")
-      (dom/button #js {:onClick #(onDecrement id)} \"Decrement\")))
+      (dom/button {:onClick #(onIncrement id)} \"Increment\")
+      (dom/button {:onClick #(onDecrement id)} \"Decrement\")))
 
   (defsc Ex4-List [this {:keys [title min max items] :or {min 0 max 1000000}} computed-callbacks]
     {:query [:id :title :max :min {[:items '_] (prim/get-query Ex4-Item)}]
      :ident [:list/by-id :id]}
     (let [onIncrement (fn [id] (prim/transact! this `[(ex2-inc {:id ~id})]))
           onDecrement (fn [id] (prim/transact! this `[(ex3-dec {:id ~id})]))]
-      (dom/div #js {:style {:float \"left\" :width \"300px\"}}
+      (dom/div {:style {:float \"left\" :width \"300px\"}}
         (dom/h4 nil (str title (when (= 0 min) (str \" (n <= \" max \")\"))))
         (dom/ul nil (->> items
                       (filter (fn [{:keys [n]}] (<= min n max)))
@@ -84,7 +84,7 @@
     {:query [:ui/react-key {:lists (prim/get-query Ex4-List)}]}
     (let [onIncrement (fn [id] (prim/transact! this `[(ex2-inc {:id ~id})]))
           onDecrement (fn [id] (prim/transact! this `[(ex3-dec {:id ~id})]))]
-      (dom/div #js {:key react-key}
+      (dom/div {:key react-key}
         (map (fn [l] (ui-ex4-list (prim/computed l {:onIncrement onIncrement
                                                     :onDecrement onDecrement})))
           lists))))

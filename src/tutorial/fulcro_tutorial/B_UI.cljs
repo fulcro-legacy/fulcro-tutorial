@@ -165,8 +165,8 @@
                       {:keys [people number b]}
                       {:keys [incHandler boolHandler]}]
   (dom/div nil
-    (dom/button #js {:onClick #(boolHandler)} "Toggle Luck")
-    (dom/button #js {:onClick #(incHandler)} "Increment Number")
+    (dom/button {:onClick #(boolHandler)} "Toggle Luck")
+    (dom/button {:onClick #(incHandler)} "Increment Number")
     (dom/span nil (str "My " (if b "" "un") "lucky number is " number
                     " and I have the following friends:"))
     (ui-people-list people)))
@@ -246,7 +246,7 @@
 (defsc SimpleCounter [this props]
   {:initLocalState (fn [] {:counter 0})}
   (dom/div nil
-    (dom/button #js {:onClick #(prim/update-state! this update :counter inc)}
+    (dom/button {:onClick #(prim/update-state! this update :counter inc)}
       "Increment me!")
     (dom/span nil
       (prim/get-state this :counter))))
@@ -320,7 +320,7 @@
   ## Important notes and further reading
 
   - Remember to use `#js` to transform attribute maps for passing to low-level DOM elements.
-  - Use *cljs* maps as input to your own Elements: `(my-ui-thing {:a 1})` and Javascript objects for low-level DOM `(dom/div #js { :data-x 1 } ...)`.
+  - Use *cljs* maps as input to your own Elements: `(my-ui-thing {:a 1})` and Javascript objects for low-level DOM `(dom/div { :data-x 1 } ...)`.
   - Add parent-generated things (like callbacks) using `prim/computed` and use the optional third argument to receive them.
 
   You may do additional [UI exercises](#!/fulcro_tutorial.B_UI_Exercises), or continue on to the

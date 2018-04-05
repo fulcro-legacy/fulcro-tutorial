@@ -20,8 +20,8 @@
   ")
 
 (defn person [{:keys [ui/react-key person/name person/mate]}]
-  (dom/li #js {:key react-key}
-    (dom/input #js {:type "checkbox"})
+  (dom/li {:key react-key}
+    (dom/input {:type "checkbox"})
     name
     (dom/button nil "X")
     (when mate (dom/ul nil (person mate)))))
@@ -81,7 +81,7 @@
         mate    nil
         checked false]                                      ; TODO (ex 3): Component local state
     (dom/li nil
-      (dom/input #js {:type    "checkbox"
+      (dom/input {:type    "checkbox"
                       :onClick (fn [e] (println "TODO ex 3"))
                       :checked false                        ; TODO (ex 3): Modify local state
                       })
@@ -114,8 +114,8 @@
       (if (= nil people)
         (dom/span nil "Loading...")
         (dom/div nil
-          (dom/button #js {} "Save")
-          (dom/button #js {} "Refresh List")
+          (dom/button {} "Save")
+          (dom/button {} "Refresh List")
           ;; TODO (ex 4): Pass deletePerson as the onDelete handler to person element
           (dom/ul nil (map #(ui-person %) people)))))))
 
@@ -129,8 +129,8 @@
       (dom/div nil (when (not= "" last-error) (str "Error " last-error)))
       (dom/div nil
         (ui-people widget)
-        (dom/input #js {:type "text"})
-        (dom/button #js {} "Add Person")))))
+        (dom/input {:type "text"})
+        (dom/button {} "Add Person")))))
 
 (def ui-root (prim/factory Root))
 

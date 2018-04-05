@@ -40,10 +40,10 @@
 
 (defcard A-live-card
   (fn [state _]
-    (dom/div nil
+    (dom/div
       "I'm Live Code!"
-      (dom/br nil)
-      (dom/button #js {:onClick #(swap! state update :n inc)} (str "I've been clicked " (:n @state) " times!"))))
+      (dom/br)
+      (dom/button {:onClick #(swap! state update :n inc)} (str "I've been clicked " (:n @state) " times!"))))
   {:n 0})
 
 (defcard-doc
@@ -128,7 +128,7 @@
 
   ")
 
-(defcard sample-card (dom/div nil "The following number is calculated: " (+ 3 6)))
+(defcard sample-card (dom/div "The following number is calculated: " (+ 3 6)))
 
 (defcard-doc
   "
@@ -139,10 +139,10 @@
   ")
 (defcard interactive-card
   (fn [state-atom owner]                                    ;wrapper function that can accept a state atom
-    (dom/div nil "A single top-level element."
-      (dom/span nil (str "value of x: " (:x @state-atom)))
-      (dom/br nil)
-      (dom/button #js {:onClick #(swap! state-atom update-in [:x] inc)} "Click me")))
+    (dom/div "A single top-level element."
+      (dom/span (str "value of x: " (:x @state-atom)))
+      (dom/br)
+      (dom/button {:onClick #(swap! state-atom update-in [:x] inc)} "Click me")))
   {:x 2}                                                    ; This is a map of initial state that devcards puts in an atom
   {:inspect-data true})                                     ; options....show me the current value of the data
 
@@ -169,25 +169,6 @@
   The nuke option: Occasionally you might see weird behavior (all of these tools are relatively new). At that point it
   might make sense to kill the REPL, use git (e.g. stash) to get to a known good source state, clean things with `lein clean`,
   and then restart.
-
-  ## Notes on documentation
-
-  There are wrappers for plain DOM elements which take as their second parameter a javascript map (not a cljs one) or nil. As such, you
-  usually write your base DOM UI like this:
-
-  ```
-  (dom/div #js {:onClick (fn [evt] ...) })
-  ```
-
-  in some of the examples you'll see this instead:
-
-  ```
-  (dom/div (clj->js {:onClick (fn [evt] ...) }))
-  ```
-
-  The two are equivalent (though the former is less runtime overhead). The latter will do a recursive transform, which can be handy.
-
-  Later, when we define our own elements we'll end up using cljs data structures (no `#js`).
 
   [Let's start with a Quick Tour.](#!/fulcro_tutorial.A_Quick_Tour)
   ")

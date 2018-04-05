@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0" :scope "provided"]
                  [com.stuartsierra/component "0.3.2"]
                  [org.clojure/clojurescript "1.9.946" :scope "provided"]
-                 [fulcrologic/fulcro "2.4.4"]
+                 [fulcrologic/fulcro "2.5.0-alpha4"]
                  [fulcrologic/fulcro-inspect "2.0.0" :exclusions [fulcrologic/fulcro fulcrologic/fulcro-css]]
                  [cljsjs/d3 "3.5.7-1"]
                  [hickory "0.7.1"]

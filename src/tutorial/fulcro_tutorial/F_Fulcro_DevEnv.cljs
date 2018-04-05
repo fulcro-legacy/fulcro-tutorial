@@ -66,7 +66,7 @@
      Object
      (render [this]
         (let [{:keys [ui/react-key ...]} (prim/props this)]
-          (dom/div #js { :key react-key } ...))))
+          (dom/div { :key react-key } ...))))
   ```
 
   The Fulcro refresh will automatically set this key in your app state to a new unique value

@@ -19,7 +19,7 @@
 (defsc Root [this {:keys [ui/react-key root-prop child]}]
   {:query         [:ui/react-key :root-prop {:child (prim/get-query Child)}]
    :initial-state (fn [params] {:root-prop 42 :child (prim/get-initial-state Child {})})}
-  (dom/div #js {:style #js {:border "1px solid black"} :key react-key}
+  (dom/div {:style {:border "1px solid black"} :key react-key}
     (str "Root prop: " root-prop)
     (ui-child child)))
 

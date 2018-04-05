@@ -67,8 +67,8 @@
 (defsc CheckSetupRoot [this {:keys [ui/react-key something]}]
   {:initial-state {}
    :query         [:ui/react-key :something]}
-  (dom/div #js {:key react-key :style #js {:border "1px solid black"}}
-    (dom/button #js {:onClick #(df/load this :something nil)} "Load")
+  (dom/div {:key react-key :style {:border "1px solid black"}}
+    (dom/button {:onClick #(df/load this :something nil)} "Load")
     (if (pos? something)
       (dom/p nil (str "OK! SERVER RESPONDED WITH " something))
       (dom/p nil "No response from server. Are you on port 9000? Is the server running? Have you pressed Load?"))))

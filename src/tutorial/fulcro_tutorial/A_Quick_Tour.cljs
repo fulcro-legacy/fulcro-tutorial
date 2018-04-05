@@ -19,11 +19,11 @@
                         :as   params}] {:counter/id id :counter/n start}) ; What should go in the database on application start-up?
    :query         [:counter/id :counter/n]                  ; What does this component need from the database (relative to its entity)
    :ident         [:counter/by-id :counter/id]}             ; Where is it stored in the database (table and ID)?
-  (dom/div #js {:className "counter"}
-    (dom/span #js {:className "counter-label"}
+  (dom/div {:className "counter"}
+    (dom/span {:className "counter-label"}
       (str "Current count for counter " id ":  "))
-    (dom/span #js {:className "counter-value"} n)
-    (dom/button #js {:onClick #(onClick id)} "Increment")))
+    (dom/span {:className "counter-value"} n)
+    (dom/button {:onClick #(onClick id)} "Increment")))
 
 (def ui-counter (prim/factory Counter {:keyfn :counter/id}))
 
@@ -77,7 +77,7 @@
                    {:counter-sum (prim/get-query CounterSum)}]} ; described soon...
   (dom/div nil
     (when loading-data
-      (dom/span #js {:style #js {:float "right"}} "Loading..."))
+      (dom/span {:style {:float "right"}} "Loading..."))
     (ui-counter-panel panel)
     (ui-counter-sum counter-sum)))
 

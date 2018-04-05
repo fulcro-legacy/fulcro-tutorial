@@ -188,7 +188,7 @@
   (initial-state [this params] {})
   Object
   (render [this]
-    (dom/button #js {:onClick #(prim/transact! this '[(exercise5/trigger)])} "Click Me")))
+    (dom/button {:onClick #(prim/transact! this '[(exercise5/trigger)])} "Click Me")))
 
 (defcard-fulcro server-trigger
   "This card will trigger your server mutation.

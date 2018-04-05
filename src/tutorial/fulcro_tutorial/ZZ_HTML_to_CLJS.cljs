@@ -32,7 +32,7 @@
     (vector? elem) (let [tag      (name (first elem))
                          attrs    (set/rename-keys (second elem) attr-renames)
                          children (map elem-to-cljs (rest (rest elem)))]
-                     (concat (list (symbol "dom" tag) (symbol "#js") attrs) children))
+                     (concat (list (symbol "dom" tag) attrs) children))
     :otherwise "UNKNOWN"))
 
 (defn to-cljs
@@ -57,13 +57,13 @@
   Object
   (render [this]
     (let [{:keys [html cljs]} (prim/props this)]
-      (dom/div #js {:className ""}
-        (dom/textarea #js {:cols     80 :rows 10
-                           :onChange (fn [evt] (m/set-string! this :html :event evt))
-                           :value    html})
-        (dom/div #js {} (edn/html-edn cljs))
-        (dom/button #js {:className "c-button" :onClick (fn [evt]
-                                                          (prim/transact! this `[(convert {})]))} "Convert")))))
+      (dom/div
+        (dom/textarea {:cols     80 :rows 10
+                       :onChange (fn [evt] (m/set-string! this :html :event evt))
+                       :value    html})
+        (dom/div (edn/html-edn cljs))
+        (dom/button {:className "c-button" :onClick (fn [evt]
+                                                      (prim/transact! this `[(convert {})]))} "Convert")))))
 
 (def ui-html-convert (prim/factory HTMLConverter))
 
@@ -74,9 +74,8 @@
   (query [this] [{:converter (prim/get-query HTMLConverter)} :react-key])
   Object
   (render [this]
-    (let [{:keys [converter ui/react-key]} (prim/props this)]
-      (dom/div
-        #js {:key react-key} (ui-html-convert converter)))))
+    (let [{:keys [converter]} (prim/props this)]
+      (dom/div (ui-html-convert converter)))))
 
 (defcard-fulcro html-converter
   "The input below can be used to convert raw HTML into DOM code in CLJS. Simply paste in valid HTML and press the button.

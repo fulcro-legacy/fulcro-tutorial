@@ -19,10 +19,10 @@
 
 (defsc Ex1-Root [this {:keys [ui/react-key n]}]
   {:query [:ui/react-key :n]}
-  (dom/div #js {:key react-key}
+  (dom/div {:key react-key}
     (dom/hr nil)
     (dom/p nil "n: " n)
-    (dom/button #js {:onClick #(prim/transact! this `[(ex1-inc {})])} "Increment")))
+    (dom/button {:onClick #(prim/transact! this `[(ex1-inc {})])} "Increment")))
 
 (defcard-fulcro mutation-exercise-1
   "
@@ -48,13 +48,13 @@
    :ident [:child/by-id :id]}
   (dom/li nil
     (dom/span nil "n: " n)
-    (dom/button #js {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")))
+    (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")))
 
 (def ui-ex2-child (prim/factory Ex2-Child {:keyfn :id}))
 
 (defsc Ex2-Root [this {:keys [ui/react-key items]}]
   {:query [:ui/react-key {:items (prim/get-query Ex2-Child)}]}
-  (dom/div #js {:key react-key}
+  (dom/div {:key react-key}
     (dom/ul nil (map ui-ex2-child items))))
 
 (defcard-fulcro mutation-exercise-2
@@ -81,15 +81,15 @@
   (dom/li nil
     (dom/span nil "n: " n)
     ; TODO: Fix the rendering using transaction follow-on property reads
-    (dom/button #js {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")
-    (dom/button #js {:onClick #(prim/transact! this `[(ex3-dec {:id ~id})])} "Decrement")))
+    (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")
+    (dom/button {:onClick #(prim/transact! this `[(ex3-dec {:id ~id})])} "Decrement")))
 
 (def ui-ex3-item (prim/factory Ex3-Item {:keyfn :id}))
 
 (defsc Ex3-List [this {:keys [title min max items] :or {min 0 max 1000000}}]
   {:query [:id :title :max :min {[:items '_] (prim/get-query Ex3-Item)}]
    :ident [:list/by-id :id]}
-  (dom/div #js {:style {:float "left" :width "300px"}}
+  (dom/div {:style {:float "left" :width "300px"}}
     (dom/h4 nil (str title (when (= 0 min) (str " (n <= " max ")"))))
     (dom/ul nil (->> items
                   (filter (fn [{:keys [n]}] (<= min n max)))
@@ -99,7 +99,7 @@
 
 (defsc Ex3-Root [this {:keys [ui/react-key lists]}]
   {:query [:ui/react-key {:lists (prim/get-query Ex3-List)}]}
-  (dom/div #js {:key react-key}
+  (dom/div {:key react-key}
     (map ui-ex3-list lists)))
 
 (defcard-fulcro mutation-exercise-3
@@ -146,15 +146,15 @@
   (dom/li nil
     (dom/span nil "n: " n)
     ; TODO: MOVE THESE TO THE PARENT, and trigger callbacks (received from computed) from here instead
-    (dom/button #js {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")
-    (dom/button #js {:onClick #(prim/transact! this `[(ex3-dec {:id ~id})])} "Decrement")))
+    (dom/button {:onClick #(prim/transact! this `[(ex2-inc {:id ~id})])} "Increment")
+    (dom/button {:onClick #(prim/transact! this `[(ex3-dec {:id ~id})])} "Decrement")))
 
 (def ui-ex4-item (prim/factory Ex4-Item {:keyfn :id}))
 
 (defsc Ex4-List [this {:keys [title min max items] :or {min 0 max 1000000}} computed-callbacks] ; TODO: pass the callbacks through to the items
   {:query [:id :title :max :min {[:items '_] (prim/get-query Ex4-Item)}]
    :ident [:list/by-id :id]}
-  (dom/div #js {:style {:float "left" :width "300px"}}
+  (dom/div {:style {:float "left" :width "300px"}}
     (dom/h4 nil (str title (when (= 0 min) (str " (n <= " max ")"))))
     (dom/ul nil (->> items
                   (filter (fn [{:keys [n]}] (<= min n max)))
@@ -166,7 +166,7 @@
 (defsc Ex4-Root [this {:keys [ui/react-key lists]}]
   {:query [:ui/react-key {:lists (prim/get-query Ex4-List)}]}
   ; TODO: Create the callbacks, and pass them down the tree. Remember to use computed!
-  (dom/div #js {:key react-key}
+  (dom/div {:key react-key}
     (map ui-ex4-list lists)))
 
 
