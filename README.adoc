@@ -6,61 +6,11 @@
 :sectanchors:
 :sectnums:
 
-image:docs/logo.png[]
-
-Fulcro 2.0 is a library for building data-driven full-stack applications for the web. It uses React, is written in
-Clojure and Clojurescript (so it has first-class functional abilities with immutable data) which leads to a clean
-synchronous story for the UI. The primary design goals are:
-
-. Provide structure and patterns that encourage simplicity in overall design.
-. Provide an out-of-the box experience that is as easy as possible, except where it conflicts with the first goal.
-
-Fulcro 1.0 is still supported but is only getting bug fix releases at this point. Version 1.0 was an
-add-on library for Om Next. Fulcro 2.0 no longer has a dependency on Om Next, though the surface API
-is still very similar (though in different namespaces). See link:/README-fulcro-2.0.adoc[README-fulcro-2.0.adoc] for
-porting instructions and the reasoning behind the change.
-
-Latest version on Clojars: image:https://img.shields.io/clojars/v/fulcrologic/fulcro.svg[link=https://clojars.org/fulcrologic/fulcro]
-
-CI Results for Latest Release: image:https://circleci.com/gh/fulcrologic/fulcro/tree/master.svg?style=svg["CircleCI", link="https://circleci.com/gh/fulcrologic/fulcro/tree/master"]
-Development Snapshot: image:https://circleci.com/gh/fulcrologic/fulcro/tree/develop.svg?style=svg["CircleCI", link="https://circleci.com/gh/fulcrologic/fulcro/tree/develop"]
-
-*NOTE*: If you are using Java 9, you may need to include "--add-modules java.xml.bind" to your JVM.
-
-== Writing Applications with Fulcro
-
-The https://fulcrologic.github.io/fulcro[website] is a great place to read about
-Fulcro. It has pages describing things in more general terms, and has links
-to various resources like videos and evaluation guides.
-
-If you want to jump and code, read on!
-
-=== Getting Started
-
-New users are encouraged to do one or both of the following:
-
-. Follow along with the https://www.youtube.com/playlist?list=PLVi9lDx-4C_Rwb8LUwW4AdjAu-39PHgEE[YouTube] video series.
-. Follow along with the _Getting Started_ chapter of the http://book.fulcrologic.com/#_getting_started[Developer's Guide].
-. Do the Fulcro Tutorial. See below.
-
-Experienced users that want to dive right in can use the `lein` template,
-which emits a bare-bones full-stack app with dev, testing, uberjar, i18n, and devcards support:
-
-```
-lein new fulcro my-project
-```
-
-If you don't know Clojure, you should at least get comfortable with the basics.
-I recommend: http://www.braveclojure.com/[Clojure for the Brave and True], and doing at least the
-basic online exercises at http://www.4clojure.com/[4Clojure]. You should also have
-a passing familiarity with Facebook's React, though if you understand that we're
-using it to get "fast UI updates", that is sufficient to start.
-
 === The Fulcro Tutorial
 
-The tutorial is an interactive coding tutorial using Devcards. To do it:
+This tutorial is an interactive coding tutorial for Fulcro using Devcards. To do it:
 
-. Clone the main https://github.com/fulcrologic/fulcro[Fulcro repository].
+. Clone the https://github.com/fulcrologic/fulcro-tutorial[Fulcro Tutorial repository].
 . Run the tutorial and follow the instructions.
 
 There is a shell script in the top-level directory that will start the tutorial:
@@ -69,52 +19,9 @@ There is a shell script in the top-level directory that will start the tutorial:
 ./run-tutorial.sh
 ```
 
-just follow the instructions it emits.
-
-== Fulcro Developers Guide
-
-Yes! There is a book on Fulcro that covers all of the features in detail! You can read it at
-http://book.fulcrologic.com[].
-
-== Contributors
-
-Fulcro is maintained by Fulcrologic, LLC. The primary architect and maintainer is Tony Kay.
-
-Fulcro expands on the work of David Nolen's Om Next, and that code represents about 30% of 2.0's code base.
-Much of the core API is similar, but this
-library is intended to be an easier-to-use alternative that follows the original simplicity of design while eliminating
-some experimental features of that library, and rounding out the story with a complete concrete implementation
-that is easy to use.
-
-Many people have contributed to this library. Much of the original internal work was part of Om Next and
-as written by David Nolen. Some of the contributions of Antonio Monteiro have also been incorporated.
-
-Fulcro itself originated as an effort of Navis in Bend, Oregon. Tony Kay was the primary architect, and numerous people
-contributed in that original project (known as Untangled).
-
-Fulcro can therefore be considered a fork of Untangled and Om Next.
-
-See the github statistics for information on all contributors.
-
-== Join us on Slack!
-
-We have an active and very helpful community on Slack. Please join us!
-
-Get an invite from here:
-
-https://clojurians.herokuapp.com/
-
-Follow the instructions to get into Slack, and find us in the `#fulcro` channel.
+and open a browser to http://localhost:3449.
 
 == Copyright and License
-
-Source code obtained from Om Next is:
-
-Copyright © 2013-2017 David Nolen
-
-Licensed under the Eclipse Public License.
-
-Fulcro is:
 
 Copyright (c) 2017, Fulcrologic, LLC
 The MIT License (MIT)

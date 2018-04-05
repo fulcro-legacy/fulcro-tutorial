@@ -4,15 +4,16 @@
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.8.0" :scope "provided"]
+                 [com.stuartsierra/component "0.3.2"]
                  [org.clojure/clojurescript "1.9.946" :scope "provided"]
-                 [fulcrologic/fulcro-inspect "2.5.0-SNAPSHOT"]
+                 [fulcrologic/fulcro "2.4.4"]
                  [fulcrologic/fulcro-inspect "2.0.0" :exclusions [fulcrologic/fulcro fulcrologic/fulcro-css]]
                  [cljsjs/d3 "3.5.7-1"]
                  [hickory "0.7.1"]
                  [devcards "0.2.4" :exclusions [org.clojure/clojure cljsjs/react cljsjs/react-dom]]
                  [cljsjs/codemirror "5.8.0-0"]]
 
-  :source-paths ["src/tutorial"]
+  :source-paths ["src/dev" "src/tutorial"]
   :resource-paths ["resources"]
 
   :jvm-opts ["-XX:-OmitStackTraceInFastThrow" "-Xmx1024m" "-Xms512m"]
@@ -21,7 +22,7 @@
   :cljsbuild {:builds
               [{:id           "tutorial"
                 :figwheel     {:devcards true}
-                :source-paths ["src/main" "src/tutorial"]
+                :source-paths ["src/tutorial"]
                 :compiler     {:main           fulcro-tutorial.main
                                :asset-path     "js/tutorial"
                                :devcards       true
@@ -36,7 +37,7 @@
                                                  :requires ["cljsjs.codemirror"]
                                                  :file     "resources/public/codemirror/matchbrackets-min.js"}]}}
                {:id           "tutorial-live"
-                :source-paths ["src/main" "src/tutorial"]
+                :source-paths ["src/tutorial"]
                 :compiler     {:main           fulcro-tutorial.main
                                :devcards       true
                                :asset-path     "js"
