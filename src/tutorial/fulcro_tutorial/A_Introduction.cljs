@@ -114,7 +114,7 @@
   This tutorial is written in Bruce Hauman's excellent Devcards. As such, these documents are live code!
 
   *NOTE*: If you're running this from the web, then you're not going to get the full experience. The source code
-  for this tutorial is part of the [Fulcro repository](https://github.com/fulcrologic/fulcro). Clone it, and then
+  for this tutorial is part of the [Fulcro repository](https://github.com/fulcrologic/fulcro-tutorial). Clone it, and then
   use the `run-tutorial.sh` script in the resulting folder to start the tutorial on your local machine.
 
   This file, for example, is in `src/tutorial/fulcro_tutorial/A_Introduction.cljs`. If you followed the README to start
