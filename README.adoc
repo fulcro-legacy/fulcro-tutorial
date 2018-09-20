@@ -6,6 +6,8 @@
 :sectanchors:
 :sectnums:
 
+NOTE: If you're using Java 9 or above, you will need to add "--add-modules" "java.xml.bind" to :jvm-opts
+
 === The Fulcro Tutorial
 
 This tutorial is an interactive coding tutorial for Fulcro using Devcards. To do it:
