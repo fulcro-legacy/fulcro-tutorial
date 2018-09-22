@@ -3,15 +3,15 @@
   :url ""
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
-  :dependencies [[org.clojure/clojure "1.8.0" :scope "provided"]
+  :dependencies [[org.clojure/clojure "1.9.0" :scope "provided"]
                  [com.stuartsierra/component "0.3.2"]
-                 [org.clojure/clojurescript "1.9.946" :scope "provided"]
-                 [fulcrologic/fulcro "2.5.0-alpha4"]
-                 [fulcrologic/fulcro-inspect "2.0.0" :exclusions [fulcrologic/fulcro fulcrologic/fulcro-css]]
-                 [cljsjs/d3 "3.5.7-1"]
+                 [org.clojure/clojurescript "1.10.339" :scope "provided"]
+                 [fulcrologic/fulcro "2.6.3"]
+                 [fulcrologic/fulcro-inspect "2.2.3" :exclusions [fulcrologic/fulcro fulcrologic/fulcro-css]]
+                 [cljsjs/d3 "4.3.0-5"]
                  [hickory "0.7.1"]
-                 [devcards "0.2.4" :exclusions [org.clojure/clojure cljsjs/react cljsjs/react-dom]]
-                 [cljsjs/codemirror "5.8.0-0"]]
+                 [devcards "0.2.6" :exclusions [org.clojure/clojure cljsjs/react cljsjs/react-dom]]
+                 [cljsjs/codemirror "5.40.2-0"]]
 
   :source-paths ["src/dev" "src/tutorial"]
   :resource-paths ["resources"]
@@ -54,8 +54,8 @@
                ]}
 
   :profiles {:dev {:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-                   :dependencies [[binaryage/devtools "0.9.9"]
+                   :dependencies [[binaryage/devtools "0.9.10"]
                                   [org.clojure/tools.namespace "0.3.0-alpha4"]
                                   [org.clojure/tools.nrepl "0.2.13"]
                                   [com.cemerick/piggieback "0.2.2"]
-                                  [figwheel-sidecar "0.5.15"]]}})
+                                  [figwheel-sidecar "0.5.16"]]}})
